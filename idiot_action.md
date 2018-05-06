@@ -74,7 +74,9 @@ Now our next attack is to:
 3. exfiltrate microphone recorded data to our own server
 4. Get flag!
 
-After some google hackery and copy paste skills, I ended up with this javascript code to activate the microphone, record for 20 seconds, converts it into webm format and then into hex, and send it to my teammate's server (which was HTTPS, since mine was only http). The hardest part of this was actually getting the https exfiltration server up and running. Note: I've redacted his url because he didn't want to get doxxed :^).
+After some google hackery and copy paste skills, I ended up with this javascript code to activate the microphone, record for 20 seconds, convert the recorded audio data into webm format and then into hex, and send it to my teammate's server (which was HTTPS, since mine was only http). 
+
+Note: this doesn't use the website's record feature, so it is not saved on the website in /uploads/. It is stored client-side as a blob: url, so I need to exfiltrate that from their computer. It turned out that the data I wanted to send was too long to use as a GET parameter, so we needed a server to POST to instead. The hardest part of this was actually getting the https exfiltration server up and running. Note: I've redacted my teammate's url because he didn't want to get doxxed :^).
 
 ```javascript
 // appends an audio element to playback and download recording
@@ -145,6 +147,6 @@ Next, I share it with idiot1 again, and wait for the data to start rolling in. A
 
 ![webm deets](https://i.imgur.com/jbfwkUw.png)
 
-Finally, opening the audio and listening to it gives us the flag.
+Finally, opening the audio and listening to it gives us the flag. I have not attached the audio file because listening to my soft loli voice would probably put all of you guys on a federal watchlist. /s
 
 Flag: `pctf{not_so_smart}`
